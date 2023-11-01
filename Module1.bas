@@ -108,6 +108,47 @@ Sub 記録行探査(例月区分 As String, 氏名 As String, 始 As Long, 終 As Long)
         Next
     End With
 End Sub
+Function 編集差分確認() As String
+    Dim 氏名 As String, 例月区分 As String
+    Dim 始 As Long, 終 As Long, 行 As Long, 列 As Long, 添字 As Long
+    Dim 配列(1 To 31, 1 To 9)
+    With Sheets("個別シフト表")
+        例月区分 = Format(.Range("例月区分"), "ge.m")
+        氏名 = .Range("氏名")
+        For 行 = 7 To 37
+            If .Cells(行, 1) <> "" Then
+                If .Cells(行, A始列) <> "" Or .Cells(行, B始列) <> "" Or .Cells(行, 休列) <> "" Then
+                    添字 = 添字 + 1
+                    配列(添字, 1) = 氏名
+                    配列(添字, 2) = .Cells(行, 1)
+                    For 列 = 3 To 5
+                        配列(添字, 列) = .Cells(行, A始列 + 列 - 3)
+                    Next
+                    For 列 = 6 To 8
+                        配列(添字, 列) = .Cells(行, B始列 + 列 - 6)
+                    Next
+                    配列(添字, 9) = .Cells(行, 休列)
+                End If
+            End If
+        Next
+    End With
+    With Sheets("管理台帳")
+        Call 記録行探査(例月区分, 氏名, 始, 終)
+        Select Case 始
+            Case Is > 0
+                For 行 = 始 To 終
+                    For 列 = 1 To 9
+                        If .Cells(行, 列) <> 配列(行 - 始 + 1, 列) Then
+                            編集差分確認 = "差分あり"
+                            Exit Function
+                        End If
+                    Next
+                Next
+            Case Else
+                編集差分確認 = "未登録"
+        End Select
+    End With
+End Function
 Sub 記録戻し()
     Dim 氏名 As String, 例月区分 As String
     Dim 始 As Long, 終 As Long, 行 As Long, 列 As Long, 添字 As Long
