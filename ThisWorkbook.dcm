@@ -14,12 +14,7 @@ Private Sub Workbook_SheetDeactivate(ByVal Sh As Object)
             Select Case 編集差分確認()
                 Case "未登録"
                     Select Case MsgBox("台帳登録が実行されていません" & vbCrLf & vbCrLf & "編集内容をクリアしてよろしいですか？", vbYesNo)
-                        Case vbYes
-                            Call 個別シフト表クリア
-                            Application.EnableEvents = False
-                            Sheets("個別シフト表").Range("例月区分").MergeArea.ClearContents
-                            Sheets("個別シフト表").Range("氏名").MergeArea.ClearContents
-                            Application.EnableEvents = True
+                        Case vbYes: Call 個別シフト表クリア
                         Case vbNo: Sh.Activate
                     End Select
                 Case "差分あり"

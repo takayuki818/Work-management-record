@@ -72,7 +72,6 @@ Sub 台帳記録()
         End Select
         最下行 = .Cells(Rows.Count, 1).End(xlUp).Row
         .Cells(1, 1).Resize(最下行, 9).Borders.LineStyle = True
-        Call 氏名リスト再設定
         Call 記録戻し
         MsgBox 文
     End With
@@ -81,6 +80,7 @@ Sub 台帳並替()
     Dim 最下行 As Long
     With Sheets("管理台帳")
         最下行 = .Cells(Rows.Count, 2).End(xlUp).Row
+        If 最下行 < 2 Then Exit Sub
         .Cells(1, 1).Resize(最下行, 9).Characters.PhoneticCharacters = ""
         With .Sort
             With .SortFields
@@ -99,6 +99,7 @@ Sub 記録行探査(例月区分 As String, 氏名 As String, 始 As Long, 終 As Long)
     With Sheets("管理台帳")
         Call 台帳並替
         最下行 = .Cells(Rows.Count, 1).End(xlUp).Row
+        If 最下行 < 2 Then Exit Sub
         For 行 = 2 To 最下行
             If .Cells(行, 1) = 氏名 And Format(.Cells(行, 2), "ge.m") = 例月区分 Then
                 If 始 = 0 Then 始 = 行
@@ -115,6 +116,10 @@ Function 編集差分確認() As String
     With Sheets("個別シフト表")
         例月区分 = Format(.Range("例月区分"), "ge.m")
         氏名 = .Range("氏名")
+        If 例月区分 = "" Or 氏名 = "" Then
+            編集差分確認 = ""
+            Exit Function
+        End If
         For 行 = 7 To 37
             If .Cells(行, 1) <> "" Then
                 If .Cells(行, A始列) <> "" Or .Cells(行, B始列) <> "" Or .Cells(行, 休列) <> "" Then
@@ -184,43 +189,6 @@ Sub 記録戻し()
                 End If
             Next
         Next
-    End With
-End Sub
-Sub 氏名リスト再設定()
-    Dim 最下行 As Long, 行 As Long
-    Dim 氏名 As String, リスト As String
-    Dim 分割
-    With Sheets("管理台帳")
-        Call 台帳並替
-        最下行 = .Cells(Rows.Count, 1).End(xlUp).Row
-        氏名 = .Cells(2, 1)
-        リスト = 氏名
-        For 行 = 3 To 最下行
-            If .Cells(行, 1) <> 氏名 Then
-                 氏名 = .Cells(行, 1)
-                リスト = リスト & "," & 氏名
-            End If
-        Next
-        分割 = Split(リスト, ",")
-        ReDim 配列(1 To UBound(分割) + 1, 1 To 1)
-        For 行 = 0 To UBound(分割)
-            配列(行 + 1, 1) = 分割(行)
-        Next
-    End With
-    With Sheets("個別シフト表")
-        .Unprotect
-        With .Range("氏名").Validation
-            .Delete
-            .Add Type:=xlValidateList, Operator:=xlEqual, Formula1:=リスト
-            .ShowError = False
-        End With
-        .Protect
-    End With
-    With Sheets("集計")
-        .Cells(4, 1).Resize(Rows.Count - 3, 1).ClearContents
-        .Cells(4, 1).Resize(Rows.Count - 3, 20).Borders.LineStyle = False
-        .Cells(4, 1).Resize(UBound(分割) + 1, 1) = 配列
-        .Cells(4, 1).Resize(UBound(分割) + 1, 20).Borders.LineStyle = True
     End With
 End Sub
 Sub 個別シフト表クリア()
