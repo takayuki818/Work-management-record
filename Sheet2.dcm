@@ -11,12 +11,11 @@ Option Explicit
 Private Sub Worksheet_Change(ByVal Target As Range)
     With Sheets("個別シフト表")
         Select Case Target.Address
-            Case .Range("氏名").Address, .Range("例月区分").Address
+            Case .Range("例月区分").Address
+                Call 記録戻し
+                Sheets("給与集計").Range("台帳_集計月") = .Range("例月区分")
+            Case .Range("氏名").Address
                 Call 記録戻し
         End Select
     End With
 End Sub
-Private Sub Worksheet_SelectionChange(ByVal Target As Range)
-
-End Sub
-

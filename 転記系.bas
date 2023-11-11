@@ -1,208 +1,203 @@
-Attribute VB_Name = "Module1"
+Attribute VB_Name = "“]‹LŒn"
 Option Explicit
-Public Const Aå§‹åˆ— As Long = 2
-Public Const Bå§‹åˆ— As Long = 7
-Public Const ä¼‘åˆ— As Long = 11
-Sub å°å¸³è¨˜éŒ²()
-    Dim å§‹ As Long, çµ‚ As Long, æ·»å­— As Long, æ·»æ•° As Long, è¡Œ As Long, åˆ— As Long, æœ€ä¸‹è¡Œ As Long, è¨˜éŒ²æ¸ˆ As Long
-    Dim ä¾‹æœˆåŒºåˆ† As String, æ°å As String, æ–‡ As String
-    Dim é…åˆ—(1 To 31, 1 To 9), è²¼ä»˜(1 To 1, 1 To 9)
-    With Sheets("å€‹åˆ¥ã‚·ãƒ•ãƒˆè¡¨")
-        ä¾‹æœˆåŒºåˆ† = Format(.Range("ä¾‹æœˆåŒºåˆ†"), "ge.m")
-        æ°å = .Range("æ°å")
-        For è¡Œ = 7 To 37
-            If .Cells(è¡Œ, 1) <> "" Then
-                If .Cells(è¡Œ, Aå§‹åˆ—) <> "" Or .Cells(è¡Œ, Bå§‹åˆ—) <> "" Or .Cells(è¡Œ, ä¼‘åˆ—) <> "" Then
-                    æ·»å­— = æ·»å­— + 1
-                    é…åˆ—(æ·»å­—, 1) = æ°å
-                    é…åˆ—(æ·»å­—, 2) = .Cells(è¡Œ, 1)
-                    For åˆ— = 3 To 5
-                        é…åˆ—(æ·»å­—, åˆ—) = .Cells(è¡Œ, Aå§‹åˆ— + åˆ— - 3)
+Public Const An—ñ As Long = 2
+Public Const Bn—ñ As Long = 7
+Public Const ‹x—ñ As Long = 11
+Sub ‘ä’ ‹L˜^()
+    Dim n As Long, I As Long, “Yš As Long, “Y” As Long, s As Long, —ñ As Long, Å‰ºs As Long, ‹L˜^Ï As Long
+    Dim —áŒ‹æ•ª As String, –¼ As String, •¶ As String
+    Dim ”z—ñ(1 To 31, 1 To 9), “\•t(1 To 1, 1 To 9)
+    With Sheets("ŒÂ•ÊƒVƒtƒg•\")
+        —áŒ‹æ•ª = Format(.Range("—áŒ‹æ•ª"), "ge.m")
+        –¼ = .Range("–¼")
+        For s = 7 To 37
+            If .Cells(s, 1) <> "" Then
+                If .Cells(s, An—ñ) <> "" Or .Cells(s, Bn—ñ) <> "" Or .Cells(s, ‹x—ñ) <> "" Then
+                    “Yš = “Yš + 1
+                    ”z—ñ(“Yš, 1) = –¼
+                    ”z—ñ(“Yš, 2) = .Cells(s, 1)
+                    For —ñ = 3 To 5
+                        ”z—ñ(“Yš, —ñ) = .Cells(s, An—ñ + —ñ - 3)
                     Next
-                    For åˆ— = 6 To 8
-                        é…åˆ—(æ·»å­—, åˆ—) = .Cells(è¡Œ, Bå§‹åˆ— + åˆ— - 6)
+                    For —ñ = 6 To 8
+                        ”z—ñ(“Yš, —ñ) = .Cells(s, Bn—ñ + —ñ - 6)
                     Next
-                    é…åˆ—(æ·»å­—, 9) = .Cells(è¡Œ, ä¼‘åˆ—)
+                    ”z—ñ(“Yš, 9) = .Cells(s, ‹x—ñ)
                 End If
             End If
         Next
     End With
-    With Sheets("ç®¡ç†å°å¸³")
-        Call è¨˜éŒ²è¡Œæ¢æŸ»(ä¾‹æœˆåŒºåˆ†, æ°å, å§‹, çµ‚)
-        æ·»æ•° = æ·»å­—
-        Select Case å§‹
+    With Sheets("ŠÇ—‘ä’ ")
+        Call ‹L˜^s’T¸(—áŒ‹æ•ª, –¼, n, I)
+        “Y” = “Yš
+        Select Case n
             Case Is > 0
-                æ–‡ = "å°å¸³ã‚’æ›´æ–°ã—ã¾ã—ãŸ"
-                For æ·»å­— = 1 To æ·»æ•°
-                    For åˆ— = 1 To 9
-                        è²¼ä»˜(1, åˆ—) = é…åˆ—(æ·»å­—, åˆ—)
+                •¶ = "‘ä’ ‚ğXV‚µ‚Ü‚µ‚½"
+                For “Yš = 1 To “Y”
+                    For —ñ = 1 To 9
+                        “\•t(1, —ñ) = ”z—ñ(“Yš, —ñ)
                     Next
-                    è¨˜éŒ²æ¸ˆ = 0
-                    For è¡Œ = å§‹ To çµ‚
-                        If .Cells(è¡Œ, 2) = è²¼ä»˜(1, 2) Then
-                            .Cells(è¡Œ, 1).Resize(1, 9) = è²¼ä»˜
-                            è¨˜éŒ²æ¸ˆ = 1
+                    ‹L˜^Ï = 0
+                    For s = n To I
+                        If .Cells(s, 2) = “\•t(1, 2) Then
+                            .Cells(s, 1).Resize(1, 9) = “\•t
+                            ‹L˜^Ï = 1
                             Exit For
                         End If
                     Next
-                    If è¨˜éŒ²æ¸ˆ = 0 Then
-                        æœ€ä¸‹è¡Œ = .Cells(Rows.Count, 1).End(xlUp).Row
-                        .Cells(æœ€ä¸‹è¡Œ + 1, 1).Resize(1, 9) = è²¼ä»˜
+                    If ‹L˜^Ï = 0 Then
+                        Å‰ºs = .Cells(Rows.Count, 1).End(xlUp).Row
+                        .Cells(Å‰ºs + 1, 1).Resize(1, 9) = “\•t
                     End If
                 Next
-                For è¡Œ = å§‹ To çµ‚
-                    è¨˜éŒ²æ¸ˆ = 0
-                    For æ·»å­— = 1 To æ·»æ•°
-                        If .Cells(è¡Œ, 2) = é…åˆ—(æ·»å­—, 2) Then
-                            è¨˜éŒ²æ¸ˆ = 1
+                For s = n To I
+                    ‹L˜^Ï = 0
+                    For “Yš = 1 To “Y”
+                        If .Cells(s, 2) = ”z—ñ(“Yš, 2) Then
+                            ‹L˜^Ï = 1
                             Exit For
                         End If
                     Next
-                    If è¨˜éŒ²æ¸ˆ = 0 Then .Rows(è¡Œ).Delete
+                    If ‹L˜^Ï = 0 Then .Rows(s).Delete
                 Next
             Case Else
-                Select Case æ·»æ•°
+                Select Case “Y”
                     Case 0
-                        æ–‡ = "ç™»éŒ²å¯¾è±¡ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚Šã¾ã›ã‚“"
+                        •¶ = "“o˜^‘ÎÛƒf[ƒ^‚ª‚ ‚è‚Ü‚¹‚ñ"
                     Case Else
-                        æ–‡ = "å°å¸³ã«æ–°è¦ç™»éŒ²ã—ã¾ã—ãŸ"
-                        æœ€ä¸‹è¡Œ = .Cells(Rows.Count, 1).End(xlUp).Row
-                        .Cells(æœ€ä¸‹è¡Œ + 1, 1).Resize(æ·»æ•°, 9) = é…åˆ—
+                        •¶ = "‘ä’ ‚ÉV‹K“o˜^‚µ‚Ü‚µ‚½"
+                        Å‰ºs = .Cells(Rows.Count, 1).End(xlUp).Row
+                        .Cells(Å‰ºs + 1, 1).Resize(“Y”, 9) = ”z—ñ
                 End Select
         End Select
-        æœ€ä¸‹è¡Œ = .Cells(Rows.Count, 1).End(xlUp).Row
-        .Cells(1, 1).Resize(æœ€ä¸‹è¡Œ, 9).Borders.LineStyle = True
-        Call è¨˜éŒ²æˆ»ã—
-        MsgBox æ–‡
+        Å‰ºs = .Cells(Rows.Count, 1).End(xlUp).Row
+        Call ‹L˜^–ß‚µ
+        MsgBox •¶
     End With
 End Sub
-Sub å°å¸³ä¸¦æ›¿()
-    Dim æœ€ä¸‹è¡Œ As Long
-    With Sheets("ç®¡ç†å°å¸³")
-        æœ€ä¸‹è¡Œ = .Cells(Rows.Count, 2).End(xlUp).Row
-        If æœ€ä¸‹è¡Œ < 2 Then Exit Sub
-        .Cells(1, 1).Resize(æœ€ä¸‹è¡Œ, 9).Characters.PhoneticCharacters = ""
+Sub ‘ä’ •À‘Ö() 'WŒv”®‚ÌƒI[ƒgƒtƒBƒ‹AŒrüİ’è‚ğŠÜ‚ŞB
+    Dim Å‰ºs As Long, Å‰E—ñ As Long
+    With Sheets("ŠÇ—‘ä’ ")
+        Å‰ºs = .Cells(Rows.Count, 2).End(xlUp).Row
+        Å‰E—ñ = .Cells(1, Columns.Count).End(xlToLeft).Column
+        Select Case Å‰ºs
+            Case Is < 2: Exit Sub
+            Case Is >= 3
+                .Cells(2, 10).Formula = "=IF(B2="""",""-"",DATE(YEAR(B2),MONTH(B2),1))"
+                .Cells(2, 11).Formula = "=D2-C2-E2"
+                .Cells(2, 12).Formula = "=MAX(0,D2-TIME(22,0,0))"
+                .Cells(2, 13).Formula = "=G2-F2-H2"
+                .Cells(2, 10).Resize(1, 4).AutoFill .Cells(2, 10).Resize(Å‰ºs - 1, 4)
+        End Select
+        .Cells(1, 1).Resize(Å‰ºs, Å‰E—ñ).Characters.PhoneticCharacters = ""
         With .Sort
             With .SortFields
                 .Clear
                 .Add Key:=Range("A1"), Order:=xlAscending
                 .Add Key:=Range("B1"), Order:=xlAscending
             End With
-            .SetRange Range(Cells(1, 1), Cells(æœ€ä¸‹è¡Œ, 9))
+            .SetRange Range(Cells(1, 1), Cells(Å‰ºs, Å‰E—ñ))
             .Header = xlYes
             .Apply
         End With
+        .Cells(1, 1).Resize(Rows.Count, Columns.Count).Borders.LineStyle = False
+        .Cells(1, 1).Resize(Å‰ºs, Å‰E—ñ).Borders.LineStyle = True
     End With
 End Sub
-Sub è¨˜éŒ²è¡Œæ¢æŸ»(ä¾‹æœˆåŒºåˆ† As String, æ°å As String, å§‹ As Long, çµ‚ As Long)
-    Dim è¡Œ As Long, æœ€ä¸‹è¡Œ As Long
-    With Sheets("ç®¡ç†å°å¸³")
-        Call å°å¸³ä¸¦æ›¿
-        æœ€ä¸‹è¡Œ = .Cells(Rows.Count, 1).End(xlUp).Row
-        If æœ€ä¸‹è¡Œ < 2 Then Exit Sub
-        For è¡Œ = 2 To æœ€ä¸‹è¡Œ
-            If .Cells(è¡Œ, 1) = æ°å And Format(.Cells(è¡Œ, 2), "ge.m") = ä¾‹æœˆåŒºåˆ† Then
-                If å§‹ = 0 Then å§‹ = è¡Œ
-                If å§‹ > 0 Then çµ‚ = è¡Œ
-                Else: If çµ‚ > 0 Then Exit For
+Sub ‹L˜^s’T¸(—áŒ‹æ•ª As String, –¼ As String, n As Long, I As Long)
+    Dim s As Long, Å‰ºs As Long
+    With Sheets("ŠÇ—‘ä’ ")
+        Call ‘ä’ •À‘Ö
+        Å‰ºs = .Cells(Rows.Count, 1).End(xlUp).Row
+        If Å‰ºs < 2 Then Exit Sub
+        For s = 2 To Å‰ºs
+            If .Cells(s, 1) = –¼ And Format(.Cells(s, 2), "ge.m") = —áŒ‹æ•ª Then
+                If n = 0 Then n = s
+                If n > 0 Then I = s
+                Else: If I > 0 Then Exit For
             End If
         Next
     End With
 End Sub
-Function ç·¨é›†å·®åˆ†ç¢ºèª() As String
-    Dim æ°å As String, ä¾‹æœˆåŒºåˆ† As String
-    Dim å§‹ As Long, çµ‚ As Long, è¡Œ As Long, åˆ— As Long, æ·»å­— As Long
-    Dim é…åˆ—(1 To 31, 1 To 9)
-    With Sheets("å€‹åˆ¥ã‚·ãƒ•ãƒˆè¡¨")
-        ä¾‹æœˆåŒºåˆ† = Format(.Range("ä¾‹æœˆåŒºåˆ†"), "ge.m")
-        æ°å = .Range("æ°å")
-        If ä¾‹æœˆåŒºåˆ† = "" Or æ°å = "" Then
-            ç·¨é›†å·®åˆ†ç¢ºèª = ""
+Function •ÒW·•ªŠm”F() As String
+    Dim –¼ As String, —áŒ‹æ•ª As String
+    Dim n As Long, I As Long, s As Long, —ñ As Long, “Yš As Long
+    Dim ”z—ñ(1 To 31, 1 To 9)
+    With Sheets("ŒÂ•ÊƒVƒtƒg•\")
+        —áŒ‹æ•ª = Format(.Range("—áŒ‹æ•ª"), "ge.m")
+        –¼ = .Range("–¼")
+        If —áŒ‹æ•ª = "" Or –¼ = "" Then
+            •ÒW·•ªŠm”F = ""
             Exit Function
         End If
-        For è¡Œ = 7 To 37
-            If .Cells(è¡Œ, 1) <> "" Then
-                If .Cells(è¡Œ, Aå§‹åˆ—) <> "" Or .Cells(è¡Œ, Bå§‹åˆ—) <> "" Or .Cells(è¡Œ, ä¼‘åˆ—) <> "" Then
-                    æ·»å­— = æ·»å­— + 1
-                    é…åˆ—(æ·»å­—, 1) = æ°å
-                    é…åˆ—(æ·»å­—, 2) = .Cells(è¡Œ, 1)
-                    For åˆ— = 3 To 5
-                        é…åˆ—(æ·»å­—, åˆ—) = .Cells(è¡Œ, Aå§‹åˆ— + åˆ— - 3)
+        For s = 7 To 37
+            If .Cells(s, 1) <> "" Then
+                If .Cells(s, An—ñ) <> "" Or .Cells(s, Bn—ñ) <> "" Or .Cells(s, ‹x—ñ) <> "" Then
+                    “Yš = “Yš + 1
+                    ”z—ñ(“Yš, 1) = –¼
+                    ”z—ñ(“Yš, 2) = .Cells(s, 1)
+                    For —ñ = 3 To 5
+                        ”z—ñ(“Yš, —ñ) = .Cells(s, An—ñ + —ñ - 3)
                     Next
-                    For åˆ— = 6 To 8
-                        é…åˆ—(æ·»å­—, åˆ—) = .Cells(è¡Œ, Bå§‹åˆ— + åˆ— - 6)
+                    For —ñ = 6 To 8
+                        ”z—ñ(“Yš, —ñ) = .Cells(s, Bn—ñ + —ñ - 6)
                     Next
-                    é…åˆ—(æ·»å­—, 9) = .Cells(è¡Œ, ä¼‘åˆ—)
+                    ”z—ñ(“Yš, 9) = .Cells(s, ‹x—ñ)
                 End If
             End If
         Next
     End With
-    With Sheets("ç®¡ç†å°å¸³")
-        Call è¨˜éŒ²è¡Œæ¢æŸ»(ä¾‹æœˆåŒºåˆ†, æ°å, å§‹, çµ‚)
-        Select Case å§‹
+    With Sheets("ŠÇ—‘ä’ ")
+        Call ‹L˜^s’T¸(—áŒ‹æ•ª, –¼, n, I)
+        Select Case n
             Case Is > 0
-                For è¡Œ = å§‹ To çµ‚
-                    For åˆ— = 1 To 9
-                        If .Cells(è¡Œ, åˆ—) <> é…åˆ—(è¡Œ - å§‹ + 1, åˆ—) Then
-                            ç·¨é›†å·®åˆ†ç¢ºèª = "å·®åˆ†ã‚ã‚Š"
+                For s = n To I
+                    For —ñ = 1 To 9
+                        If .Cells(s, —ñ) <> ”z—ñ(s - n + 1, —ñ) Then
+                            •ÒW·•ªŠm”F = "·•ª‚ ‚è"
                             Exit Function
                         End If
                     Next
                 Next
             Case Else
-                ç·¨é›†å·®åˆ†ç¢ºèª = "æœªç™»éŒ²"
+                •ÒW·•ªŠm”F = "–¢“o˜^"
         End Select
     End With
 End Function
-Sub è¨˜éŒ²æˆ»ã—()
-    Dim æ°å As String, ä¾‹æœˆåŒºåˆ† As String
-    Dim å§‹ As Long, çµ‚ As Long, è¡Œ As Long, åˆ— As Long, æ·»å­— As Long
-    Dim è²¼ä»˜(1 To 1, 1 To 3)
-    With Sheets("ç®¡ç†å°å¸³")
-        ä¾‹æœˆåŒºåˆ† = Format(Sheets("å€‹åˆ¥ã‚·ãƒ•ãƒˆè¡¨").Range("ä¾‹æœˆåŒºåˆ†"), "ge.m")
-        æ°å = Sheets("å€‹åˆ¥ã‚·ãƒ•ãƒˆè¡¨").Range("æ°å")
-        Call å€‹åˆ¥ã‚·ãƒ•ãƒˆè¡¨ã‚¯ãƒªã‚¢
-        Call è¨˜éŒ²è¡Œæ¢æŸ»(ä¾‹æœˆåŒºåˆ†, æ°å, å§‹, çµ‚)
-        If å§‹ = 0 Then: Exit Sub
-        ReDim é…åˆ—(1 To çµ‚ - å§‹ + 1, 1 To 8)
-        For è¡Œ = å§‹ To çµ‚
-            For åˆ— = 2 To 9
-                é…åˆ—(è¡Œ - å§‹ + 1, åˆ— - 1) = .Cells(è¡Œ, åˆ—)
+Sub ‹L˜^–ß‚µ()
+    Dim –¼ As String, —áŒ‹æ•ª As String
+    Dim n As Long, I As Long, s As Long, —ñ As Long, “Yš As Long
+    Dim “\•t(1 To 1, 1 To 3)
+    With Sheets("ŠÇ—‘ä’ ")
+        —áŒ‹æ•ª = Format(Sheets("ŒÂ•ÊƒVƒtƒg•\").Range("—áŒ‹æ•ª"), "ge.m")
+        –¼ = Sheets("ŒÂ•ÊƒVƒtƒg•\").Range("–¼")
+        Call ŒÂ•ÊƒVƒtƒg•\ƒNƒŠƒA
+        Call ‹L˜^s’T¸(—áŒ‹æ•ª, –¼, n, I)
+        If n = 0 Then: Exit Sub
+        ReDim ”z—ñ(1 To I - n + 1, 1 To 8)
+        For s = n To I
+            For —ñ = 2 To 9
+                ”z—ñ(s - n + 1, —ñ - 1) = .Cells(s, —ñ)
             Next
         Next
     End With
-    With Sheets("å€‹åˆ¥ã‚·ãƒ•ãƒˆè¡¨")
-        For è¡Œ = 7 To 37
-            For æ·»å­— = 1 To çµ‚ - å§‹ + 1
-                If .Cells(è¡Œ, 1) = é…åˆ—(æ·»å­—, 1) Then
-                    Erase è²¼ä»˜
-                    For åˆ— = 2 To 4
-                        è²¼ä»˜(1, åˆ— - 1) = é…åˆ—(æ·»å­—, åˆ—)
+    With Sheets("ŒÂ•ÊƒVƒtƒg•\")
+        For s = 7 To 37
+            For “Yš = 1 To I - n + 1
+                If .Cells(s, 1) = ”z—ñ(“Yš, 1) Then
+                    Erase “\•t
+                    For —ñ = 2 To 4
+                        “\•t(1, —ñ - 1) = ”z—ñ(“Yš, —ñ)
                     Next
-                    .Cells(è¡Œ, Aå§‹åˆ—).Resize(1, 3) = è²¼ä»˜
-                    Erase è²¼ä»˜
-                    For åˆ— = 5 To 7
-                        è²¼ä»˜(1, åˆ— - 4) = é…åˆ—(æ·»å­—, åˆ—)
+                    .Cells(s, An—ñ).Resize(1, 3) = “\•t
+                    Erase “\•t
+                    For —ñ = 5 To 7
+                        “\•t(1, —ñ - 4) = ”z—ñ(“Yš, —ñ)
                     Next
-                    .Cells(è¡Œ, Bå§‹åˆ—).Resize(1, 3) = è²¼ä»˜
-                    .Cells(è¡Œ, ä¼‘åˆ—) = é…åˆ—(æ·»å­—, 8)
+                    .Cells(s, Bn—ñ).Resize(1, 3) = “\•t
+                    .Cells(s, ‹x—ñ) = ”z—ñ(“Yš, 8)
                 End If
             Next
         Next
-    End With
-End Sub
-Sub å€‹åˆ¥ã‚·ãƒ•ãƒˆè¡¨ã‚¯ãƒªã‚¢()
-    With Sheets("å€‹åˆ¥ã‚·ãƒ•ãƒˆè¡¨")
-        .Cells(7, Aå§‹åˆ—).Resize(31, 3).ClearContents
-        .Cells(7, Bå§‹åˆ—).Resize(31, 3).ClearContents
-        .Cells(7, ä¼‘åˆ—).Resize(31, 1).ClearContents
-    End With
-End Sub
-Sub ä¿è­·åˆ‡æ›¿()
-    With ActiveSheet
-        Select Case .ProtectContents
-            Case True: .Unprotect: MsgBox "ã‚·ãƒ¼ãƒˆä¿è­·ã‚’è§£é™¤ã—ã¾ã—ãŸ"
-            Case False: .Protect: MsgBox "ã‚·ãƒ¼ãƒˆã‚’ä¿è­·ã—ã¾ã—ãŸ"
-        End Select
     End With
 End Sub
