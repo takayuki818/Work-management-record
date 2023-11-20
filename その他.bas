@@ -1,5 +1,25 @@
 Attribute VB_Name = "その他"
 Option Explicit
+Sub 夜定型シフト代入()
+    Dim 行 As Long, 配列()
+    With Sheets("個別シフト表")
+        行 = ActiveCell.Row
+        If 行 > 6 And 行 < 38 Then
+            配列 = .Range("夜標準シフト").Value
+            .Cells(行, 2).Resize(1, 3) = 配列
+        End If
+    End With
+End Sub
+Sub 昼定型シフト代入()
+    Dim 行 As Long, 配列()
+    With Sheets("個別シフト表")
+        行 = ActiveCell.Row
+        If 行 > 6 And 行 < 38 Then
+            配列 = .Range("昼標準シフト").Value
+            .Cells(行, 7).Resize(1, 3) = 配列
+        End If
+    End With
+End Sub
 Sub 個別シフト表クリア()
     With Sheets("個別シフト表")
         .Cells(7, A始列).Resize(31, 3).ClearContents
@@ -61,8 +81,8 @@ Function 特別日勤務取得(氏名 As String, 月区 As Date, 特別日リスト As Variant)
             If .Cells(行, 1) = 氏名 And .Cells(行, 10) = 月区 Then
                 For Each 特別日 In 特別日リスト
                     If .Cells(行, 2) = 特別日 Then
-                        If .Cells(行, 11) > 0 Then 戻り値(1) = 戻り値(1) + 1
-                        If .Cells(行, 13) > 0 Then 戻り値(2) = 戻り値(2) + 1
+                        If .Cells(行, 13) > 0 Then 戻り値(1) = 戻り値(1) + 1
+                        If .Cells(行, 11) > 0 Then 戻り値(2) = 戻り値(2) + 1
                         Select Case 戻り値(3)
                             Case "": 戻り値(3) = "勤務日：" & Format(.Cells(行, 2), "d")
                             Case Else: 戻り値(3) = 戻り値(3) & "," & Format(.Cells(行, 2), "d")

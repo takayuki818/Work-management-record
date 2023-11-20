@@ -82,12 +82,12 @@ Sub 台帳並替() '集計数式のオートフィル、罫線設定を含む。
         最右列 = .Cells(1, Columns.Count).End(xlToLeft).Column
         Select Case 最下行
             Case Is < 2: Exit Sub
-            Case Is >= 3
+            Case Is >= 2
                 .Cells(2, 10).Formula = "=IF(B2="""",""-"",DATE(YEAR(B2),MONTH(B2),1))"
                 .Cells(2, 11).Formula = "=D2-C2-E2"
                 .Cells(2, 12).Formula = "=MAX(0,D2-TIME(22,0,0))"
                 .Cells(2, 13).Formula = "=G2-F2-H2"
-                .Cells(2, 10).Resize(1, 4).AutoFill .Cells(2, 10).Resize(最下行 - 1, 4)
+                If 最下行 >= 3 Then .Cells(2, 10).Resize(1, 4).AutoFill .Cells(2, 10).Resize(最下行 - 1, 4)
         End Select
         .Cells(1, 1).Resize(最下行, 最右列).Characters.PhoneticCharacters = ""
         With .Sort
