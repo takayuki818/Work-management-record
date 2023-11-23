@@ -3,6 +3,20 @@ Option Explicit
 Public Const A始列 As Long = 2
 Public Const B始列 As Long = 7
 Public Const 休列 As Long = 11
+Function 日計勤務時間検査() As String
+    Dim 行 As Long, 列群 As Variant, 列 As Variant
+    With Sheets("個別シフト表")
+        列群 = Array(5, 10, 12)
+        For 行 = 7 To 37
+            For Each 列 In 列群
+                If .Cells(行, 列) <> "" And .Cells(行, 列) > TimeSerial(7, 45, 0) Then
+                    日計勤務時間検査 = "【注意】日計7.75h超過日あり" & vbCrLf & "本ツールは時間外勤務の記録に対応していません"
+                    Exit Function
+                End If
+            Next
+        Next
+    End With
+End Function
 Sub 台帳記録()
     Dim 始 As Long, 終 As Long, 添字 As Long, 添数 As Long, 行 As Long, 列 As Long, 最下行 As Long, 記録済 As Long
     Dim 例月区分 As String, 氏名 As String, 文 As String
@@ -73,10 +87,13 @@ Sub 台帳記録()
         最下行 = .Cells(Rows.Count, 1).End(xlUp).Row
         Call 記録戻し
         MsgBox 文
+        文 = 日計勤務時間検査()
+        If 文 <> "" Then MsgBox 文
     End With
 End Sub
-Sub 台帳並替() '集計数式のオートフィル、罫線設定を含む。
+Sub 台帳並替() '集計数式のオートフィル、罫線・条件付き書式設定を含む。
     Dim 最下行 As Long, 最右列 As Long
+    Dim 条件 As FormatCondition
     With Sheets("管理台帳")
         最下行 = .Cells(Rows.Count, 2).End(xlUp).Row
         最右列 = .Cells(1, Columns.Count).End(xlToLeft).Column
@@ -87,7 +104,8 @@ Sub 台帳並替() '集計数式のオートフィル、罫線設定を含む。
                 .Cells(2, 11).Formula = "=D2-C2-E2"
                 .Cells(2, 12).Formula = "=MAX(0,D2-TIME(22,0,0))"
                 .Cells(2, 13).Formula = "=G2-F2-H2"
-                If 最下行 >= 3 Then .Cells(2, 10).Resize(1, 4).AutoFill .Cells(2, 10).Resize(最下行 - 1, 4)
+                .Cells(2, 14).Formula = "=SUM(K2,M2)"
+                If 最下行 >= 3 Then .Cells(2, 10).Resize(1, 5).AutoFill .Cells(2, 10).Resize(最下行 - 1, 5)
         End Select
         .Cells(1, 1).Resize(最下行, 最右列).Characters.PhoneticCharacters = ""
         With .Sort
@@ -102,6 +120,11 @@ Sub 台帳並替() '集計数式のオートフィル、罫線設定を含む。
         End With
         .Cells(1, 1).Resize(Rows.Count, Columns.Count).Borders.LineStyle = False
         .Cells(1, 1).Resize(最下行, 最右列).Borders.LineStyle = True
+        .Cells.FormatConditions.Delete
+        Set 条件 = .Cells(2, 11).Resize(最下行, 1).FormatConditions.Add(Type:=xlExpression, Formula1:="=K2>TIME(7,45,0)")
+        条件.Font.Color = RGB(255, 0, 0)
+        Set 条件 = .Cells(2, 13).Resize(最下行, 2).FormatConditions.Add(Type:=xlExpression, Formula1:="=M2>TIME(7,45,0)")
+        条件.Font.Color = RGB(255, 0, 0)
     End With
 End Sub
 Sub 記録行探査(例月区分 As String, 氏名 As String, 始 As Long, 終 As Long)
