@@ -27,6 +27,23 @@ Private Sub Worksheet_Change(ByVal Target As Range)
         End Select
     End With
 End Sub
-
-
+Private Sub Worksheet_SelectionChange(ByVal Target As Range) 'Targetが結合セルの場合：範囲全体を取得
+    Dim 判定 As String
+    With Sheets("個別シフト表")
+        Select Case Target.Address
+            Case .Range("例月区分").Address
+                判定 = 編集差分確認()
+                Select Case 判定
+                    Case "未登録", "差分あり"
+                        MsgBox "台帳登録が実行されていません（台帳" & 判定 & "）" & vbCrLf & vbCrLf & "「例月区分」「氏名」を変更すると編集内容が消去されることにご注意ください"
+                End Select
+            Case .Range("氏名").MergeArea.Address '結合セル範囲全体に補正
+                判定 = 編集差分確認()
+                Select Case 判定
+                    Case "未登録", "差分あり"
+                        MsgBox "台帳登録が実行されていません（台帳" & 判定 & "）" & vbCrLf & vbCrLf & "「例月区分」「氏名」を変更すると編集内容が消去されることにご注意ください"
+                End Select
+        End Select
+    End With
+End Sub
 

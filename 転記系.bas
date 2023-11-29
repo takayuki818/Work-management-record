@@ -183,7 +183,10 @@ Function 編集差分確認() As String
                     Next
                 Next
             Case Else
-                編集差分確認 = "未登録"
+                Select Case 添字 'フォームへのデータ入力有無で分岐
+                    Case Is > 0: 編集差分確認 = "未登録"
+                    Case Else: 編集差分確認 = ""
+                End Select
         End Select
     End With
 End Function
